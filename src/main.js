@@ -9,11 +9,17 @@ var btnShowSvd = document.querySelector('.show-saved')
 var btnShowRnd = document.querySelector('.show-random')
 var btnShowFrm = document.querySelector('.show-form')
 var btnShowMain = document.querySelector('.show-main')
-var backMain = document.querySelector('.back-to-main')
+var btnBackMain = document.querySelector('.back-to-main')
+var btnShowPoster = document.querySelector('.make-poster')
 
 var posterForm = document.querySelector('.poster-form')
 var mainPage = document.querySelector('.main-poster')
 var savedPage = document.querySelector('.saved-posters')
+
+
+var makeTitle = document.querySelector('#poster-title')
+var makeImage = document.querySelector('#poster-image-url')
+var makeQuote = document.querySelector('#poster-quote')
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -117,11 +123,28 @@ var currentPoster = [];
 
 
 // event listeners go here 👇
-btnShowFrm.addEventListener('click',switchPage)
-btnShowSvd.addEventListener('click',switchPageTwo)
+btnShowFrm.addEventListener('click', switchPage)
+btnShowSvd.addEventListener('click', switchPageTwo)
 btnShowRnd.addEventListener('click', sendRandom)
-backMain.addEventListener('click',switchPageMain)
+btnBackMain.addEventListener('click', switchPageMain)
 btnShowMain.addEventListener('click', switchPageMain)
+// btnShowPoster.addEventListener('click', function() {
+//   posterTitle.innerText = makeTitle
+//   posterImg.src = makeImage
+//   posterQuote.innerText = makeQuote
+//   event.preventdefault()
+// })
+
+makeTitle.addEventListener('submit', makeOwnPoster)
+makeImage.addEventListener('submit', makeOwnPoster)
+makeQuote.addEventListener('submit', makeOwnPoster)
+
+btnShowPoster.addEventListener('click', function() {
+  event.preventDefault()
+  posterTitle.innerText = makeTitle
+  posterImg.src = makeImage
+  posterQuote.innerText = makeQuote
+})
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 randoImg = getRandomIndex(images)
@@ -165,3 +188,23 @@ function switchPageMain(){
    posterQuote.innerText = quotes[randoQuote]
 
  };
+
+ function makeOwnPoster(){
+  posterTitle.innerText = makeTitle
+  posterImg.src = makeImage
+  posterQuote.innerText = makeQuote
+ };
+
+
+// function showPoster(){
+//   posterTitle.innerText = makeTitle
+//   posterImg.src = makeImage
+//   posterQuote.innerText = makeQuote
+// };
+
+//event.preventdefault()
+
+ // posterTitle.innerText = titles[]
+ // posteImg.src = images[]
+ // posterQuote.innerText = quotes[]
+ // get these into a var newPoster(1,2,3) class/object instance

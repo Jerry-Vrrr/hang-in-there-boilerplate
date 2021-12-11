@@ -36,7 +36,12 @@ Build status of Vohrer & Meier's Hang-In-There: _in progress_
 ```
 Project spec & rubric can be found [here](https://frontend.turing.io/projects/module-1/hang-in-there.html)
 
-To view your project while in Atom:
+## Installation
 
+To view your project while in Atom:
 1. In your terminal, navigate to your project repo
 2. Run the command `open index.html`
+
+
+# Credits
+None of this would be possible without the support and teachings from the esteemed Turing school.

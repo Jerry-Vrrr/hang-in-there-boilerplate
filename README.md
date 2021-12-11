@@ -6,6 +6,15 @@ A Motivational inspired pick-me-up Generator!
 
 Who hasn't gone through life and felt like that have lost that spark that helps them keep moving forward? Well, my partner and I felt that the best way to help people stoke the embers that keep you moving was proper motivation!
 
+
+## Build Status
+
+Build status of Vohrer & Meier's Hang-In-There: in progress
+
+## Code Style
+
+* HTML
+
 1. One teammate: fork this repository
 2. Clone down your new, forked repo
 3. cd into the repository

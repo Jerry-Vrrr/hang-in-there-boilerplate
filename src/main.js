@@ -8,6 +8,8 @@ var btnSave = document.querySelector('.save-poster')
 var btnShowSvd = document.querySelector('.show-saved')
 var btnShowRnd = document.querySelector('.show-random')
 var btnShowFrm = document.querySelector('.show-form')
+var btnShowMain = document.querySelector('.show-main')
+var backMain = document.querySelector('.back-to-main')
 
 var posterForm = document.querySelector('.poster-form')
 var mainPage = document.querySelector('.main-poster')
@@ -118,7 +120,8 @@ var currentPoster = [];
 btnShowFrm.addEventListener('click',switchPage)
 btnShowSvd.addEventListener('click',switchPageTwo)
 btnShowRnd.addEventListener('click', sendRandom)
-
+backMain.addEventListener('click',switchPageMain)
+btnShowMain.addEventListener('click', switchPageMain)
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 randoImg = getRandomIndex(images)
@@ -141,7 +144,16 @@ function switchPage(){
 function switchPageTwo(){
   mainPage.classList.toggle('hidden')
   savedPage.classList.toggle('hidden')
+
 };
+
+function switchPageMain(){
+  savedPage.classList.toggle('hidden')
+  mainPage.classList.toggle('hidden')
+
+
+};
+
 
  function sendRandom() {
    randoImg = getRandomIndex(images)

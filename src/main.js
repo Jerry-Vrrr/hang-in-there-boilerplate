@@ -119,7 +119,7 @@ var quotes = [
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
 var savedPosters = [];
-var currentPoster = [];
+var currentPoster =
 
 
 // event listeners go here 👇
@@ -127,24 +127,20 @@ btnShowFrm.addEventListener('click', switchPage)
 btnShowSvd.addEventListener('click', switchPageTwo)
 btnShowRnd.addEventListener('click', sendRandom)
 btnBackMain.addEventListener('click', switchPageMain)
-btnShowMain.addEventListener('click', switchPageMain)
-// btnShowPoster.addEventListener('click', function() {
-//   posterTitle.innerText = makeTitle
-//   posterImg.src = makeImage
-//   posterQuote.innerText = makeQuote
-//   event.preventdefault()
-// })
-
-makeTitle.addEventListener('submit', makeOwnPoster)
-makeImage.addEventListener('submit', makeOwnPoster)
-makeQuote.addEventListener('submit', makeOwnPoster)
+btnShowMain.addEventListener('click', switchPage)
 
 btnShowPoster.addEventListener('click', function() {
   event.preventDefault()
-  posterTitle.innerText = makeTitle
-  posterImg.src = makeImage
-  posterQuote.innerText = makeQuote
+  posterTitle.innerText = makeTitle.value
+  posterImg.src = makeImage.value
+  posterQuote.innerText = makeQuote.value
+
+  titles.push(posterTitle.innerText)
+  images.push(posterImg.src)
+  quotes.push(posterQuote.innerText)
+  switchPage()
 })
+
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 randoImg = getRandomIndex(images)
@@ -158,6 +154,14 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 };
 
+function makeOwnPoster(){
+ posterTitle.innerText = makeTitle.value
+ posterImg.src = makeImage.value
+ posterQuote.innerText = makeQuote.value
+
+ // currentPoster = new Poster(makeTitle,makeImage,makeQuote)
+
+};
 
 function switchPage(){
   mainPage.classList.toggle('hidden')
@@ -169,11 +173,9 @@ function switchPageTwo(){
   savedPage.classList.toggle('hidden')
 
 };
-
 function switchPageMain(){
   savedPage.classList.toggle('hidden')
   mainPage.classList.toggle('hidden')
-
 
 };
 
@@ -189,20 +191,7 @@ function switchPageMain(){
 
  };
 
- function makeOwnPoster(){
-  posterTitle.innerText = makeTitle
-  posterImg.src = makeImage
-  posterQuote.innerText = makeQuote
- };
 
-
-// function showPoster(){
-//   posterTitle.innerText = makeTitle
-//   posterImg.src = makeImage
-//   posterQuote.innerText = makeQuote
-// };
-
-//event.preventdefault()
 
  // posterTitle.innerText = titles[]
  // posteImg.src = images[]

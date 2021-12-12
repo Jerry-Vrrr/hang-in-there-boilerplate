@@ -120,13 +120,7 @@ var quotes = [
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
 var savedPosters = [];
-//var currentPoster =[];
-var posterInstance = new Poster(
-  posterImg.src,
-  posterTitle.innerText,
-  posterQuote.innerText
-)
-
+// var currentPoster =;
 
 // event listeners go here 👇
 btnShowFrm.addEventListener('click', switchPage)
@@ -136,28 +130,16 @@ btnBackMain.addEventListener('click', switchPageMain)
 btnShowMain.addEventListener('click', switchPage)
 btnSave.addEventListener('click', savePoster)
 
-
-function savePoster(){
-    posterInstance = new Poster(
-    posterImg.src,
-    posterTitle.innerText,
-    posterQuote.innerText
-  )
-  savedPosters.push(posterInstance)
-};
-
-
 btnShowPoster.addEventListener('click', function() {
-  event.preventDefault()
-  posterTitle.innerText = makeTitle.value
-  posterImg.src = makeImage.value
-  posterQuote.innerText = makeQuote.value
+    event.preventDefault()
+    posterTitle.innerText = makeTitle.value
+    posterImg.src = makeImage.value
+    posterQuote.innerText = makeQuote.value
 
-  titles.push(posterTitle.innerText)
-  images.push(posterImg.src)
-  quotes.push(posterQuote.innerText)
-  switchPage()
-
+    titles.push(posterTitle.innerText)
+    images.push(posterImg.src)
+    quotes.push(posterQuote.innerText)
+    switchPage()
 });
 
 // functions and event handlers go here 👇
@@ -165,56 +147,68 @@ btnShowPoster.addEventListener('click', function() {
 randoImg = getRandomIndex(images)
 randoTitl = getRandomIndex(titles)
 randoQuote = getRandomIndex(quotes)
+
 posterTitle.innerText = titles[randoTitl]
 posterImg.src = images[randoImg]
 posterQuote.innerText = quotes[randoQuote]
 
+function savePoster() {
+    currentPoster = new Poster(
+    posterImg.src,
+    posterTitle.innerText,
+    posterQuote.innerText)
+
+      if (!savedPosters.includes(currentPoster)) {
+      savedPosters.push(currentPoster)
+      };
+};
+
 function getRandomIndex(array) {
-  return Math.floor(Math.random() * array.length);
+    return Math.floor(Math.random() * array.length);
 };
 
 function makeOwnPoster(){
- posterTitle.innerText = makeTitle.value
- posterImg.src = makeImage.value
- posterQuote.innerText = makeQuote.value
- savedPosters.push(posterInstance)
+    posterTitle.innerText = makeTitle.value
+    posterImg.src = makeImage.value
+    posterQuote.innerText = makeQuote.value
 
+    savedPosters.push(currentPoster)
 };
 
 function switchPage(){
-  mainPage.classList.toggle('hidden')
-  posterForm.classList.toggle('hidden')
+    mainPage.classList.toggle('hidden')
+    posterForm.classList.toggle('hidden')
 };
 
 function switchPageTwo(){
-  mainPage.classList.toggle('hidden')
-  savedPage.classList.toggle('hidden')
+    mainPage.classList.toggle('hidden')
+    savedPage.classList.toggle('hidden')
 
-  gridView()
+    gridView()
 };
+
 function switchPageMain(){
-  savedPage.classList.toggle('hidden')
-  mainPage.classList.toggle('hidden')
-
+    savedPage.classList.toggle('hidden')
+    mainPage.classList.toggle('hidden')
 };
 
-  function sendRandom() {
-   randoImg = getRandomIndex(images)
-   randoTitl = getRandomIndex(titles)
-   randoQuote = getRandomIndex(quotes)
+function sendRandom() {
+    randoImg = getRandomIndex(images)
+    randoTitl = getRandomIndex(titles)
+    randoQuote = getRandomIndex(quotes)
 
-   posterTitle.innerText = titles[randoTitl]
-   posterImg.src = images[randoImg]
-   posterQuote.innerText = quotes[randoQuote]
-
+    posterTitle.innerText = titles[randoTitl]
+    posterImg.src = images[randoImg]
+    posterQuote.innerText = quotes[randoQuote]
  };
- function gridView(){
-   for (var i = 0; i<savedPosters.length; i++){
-  posterGrid.innerHTML += `
-  <article class = 'mini-poster'>
-  <img class="poster-img" src=${savedPosters[i].imageURL}>
-  <h2 class="poster-title">${savedPosters[i].title}</h2>
-  <h4 class="poster-quote">${savedPosters[i].quote}</h4>
-  </article>`
-};
+
+function gridView(){
+    for (var i = 0; i<savedPosters.length; i++){
+      posterGrid.innerHTML += `
+      <article class = 'mini-poster'>
+      <img class="poster-img" src=${savedPosters[i].imageURL}>
+      <h2 class="poster-title">${savedPosters[i].title}</h2>
+      <h4 class="poster-quote">${savedPosters[i].quote}</h4>
+      </article>`
+      };
 };

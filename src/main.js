@@ -1,8 +1,9 @@
 
 // query selector variables go here 👇
-var posterTitle = document.querySelector('h1');
+var posterTitle = document.querySelector('.poster-title');
 var posterImg = document.querySelector('.poster-img')
 var posterQuote = document.querySelector('.poster-quote')
+var posterGrid = document.querySelector('.saved-posters-grid')
 
 var btnSave = document.querySelector('.save-poster')
 var btnShowSvd = document.querySelector('.show-saved')
@@ -119,7 +120,12 @@ var quotes = [
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
 var savedPosters = [];
-var currentPoster =
+//var currentPoster =[];
+var posterInstance = new Poster(
+  posterImg.src,
+  posterTitle.innerText,
+  posterQuote.innerText
+)
 
 
 // event listeners go here 👇
@@ -128,6 +134,18 @@ btnShowSvd.addEventListener('click', switchPageTwo)
 btnShowRnd.addEventListener('click', sendRandom)
 btnBackMain.addEventListener('click', switchPageMain)
 btnShowMain.addEventListener('click', switchPage)
+btnSave.addEventListener('click', savePoster)
+
+
+function savePoster(){
+    posterInstance = new Poster(
+    posterImg.src,
+    posterTitle.innerText,
+    posterQuote.innerText
+  )
+  savedPosters.push(posterInstance)
+}
+
 
 btnShowPoster.addEventListener('click', function() {
   event.preventDefault()
@@ -139,6 +157,7 @@ btnShowPoster.addEventListener('click', function() {
   images.push(posterImg.src)
   quotes.push(posterQuote.innerText)
   switchPage()
+
 })
 
 // functions and event handlers go here 👇
@@ -158,8 +177,7 @@ function makeOwnPoster(){
  posterTitle.innerText = makeTitle.value
  posterImg.src = makeImage.value
  posterQuote.innerText = makeQuote.value
-
- // currentPoster = new Poster(makeTitle,makeImage,makeQuote)
+ savedPosters.push(posterInstance)
 
 };
 
@@ -172,6 +190,7 @@ function switchPageTwo(){
   mainPage.classList.toggle('hidden')
   savedPage.classList.toggle('hidden')
 
+  gridView()
 };
 function switchPageMain(){
   savedPage.classList.toggle('hidden')
@@ -179,8 +198,7 @@ function switchPageMain(){
 
 };
 
-
- function sendRandom() {
+  function sendRandom() {
    randoImg = getRandomIndex(images)
    randoTitl = getRandomIndex(titles)
    randoQuote = getRandomIndex(quotes)
@@ -190,10 +208,8 @@ function switchPageMain(){
    posterQuote.innerText = quotes[randoQuote]
 
  };
-
-
-
- // posterTitle.innerText = titles[]
- // posteImg.src = images[]
- // posterQuote.innerText = quotes[]
- // get these into a var newPoster(1,2,3) class/object instance
+ function gridView(){
+   for (var i = 0; i<savedPosters.length; i++){
+  posterGrid.innerHTML += `<img class="mini-poster" src='${savedPosters[i].imageURL}' >`
+  }
+}

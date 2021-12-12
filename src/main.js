@@ -144,7 +144,7 @@ function savePoster(){
     posterQuote.innerText
   )
   savedPosters.push(posterInstance)
-}
+};
 
 
 btnShowPoster.addEventListener('click', function() {
@@ -158,7 +158,7 @@ btnShowPoster.addEventListener('click', function() {
   quotes.push(posterQuote.innerText)
   switchPage()
 
-})
+});
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -210,6 +210,11 @@ function switchPageMain(){
  };
  function gridView(){
    for (var i = 0; i<savedPosters.length; i++){
-  posterGrid.innerHTML += `<img class="mini-poster" src='${savedPosters[i].imageURL}' >`
-  }
-}
+  posterGrid.innerHTML += `
+  <article class = 'mini-poster'>
+  <img class="poster-img" src=${savedPosters[i].imageURL}>
+  <h2 class="poster-title">${savedPosters[i].title}</h2>
+  <h4 class="poster-quote">${savedPosters[i].quote}</h4>
+  </article>`
+};
+};

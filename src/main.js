@@ -123,14 +123,28 @@ var savedPosters = [];
 // var currentPoster =;
 
 // event listeners go here 👇
-btnShowFrm.addEventListener('click', switchPage)
-btnShowSvd.addEventListener('click', switchPageTwo)
+btnShowFrm.addEventListener('click', switchPagePosterForm)
+btnShowSvd.addEventListener('click', switchPageSaved)
 btnShowRnd.addEventListener('click', sendRandom)
 btnBackMain.addEventListener('click', switchPageMain)
-btnShowMain.addEventListener('click', switchPage)
+btnShowMain.addEventListener('click', switchPageMain)
 btnSave.addEventListener('click', savePoster)
+btnShowPoster.addEventListener('click', showPoster)
+window.addEventListener('load', displayRandomPoster);
 
-btnShowPoster.addEventListener('click', function() {
+// functions and event handlers go here 👇
+// (we've provided one for you to get you started)!
+function displayRandomPoster(){
+    randoImg = getRandomIndex(images)
+    randoTitl = getRandomIndex(titles)
+    randoQuote = getRandomIndex(quotes)
+
+    posterTitle.innerText = titles[randoTitl]
+    posterImg.src = images[randoImg]
+    posterQuote.innerText = quotes[randoQuote]
+};
+
+function showPoster() {
     event.preventDefault()
     posterTitle.innerText = makeTitle.value
     posterImg.src = makeImage.value
@@ -139,29 +153,22 @@ btnShowPoster.addEventListener('click', function() {
     titles.push(posterTitle.innerText)
     images.push(posterImg.src)
     quotes.push(posterQuote.innerText)
-    switchPage()
-});
-
-// functions and event handlers go here 👇
-// (we've provided one for you to get you started)!
-randoImg = getRandomIndex(images)
-randoTitl = getRandomIndex(titles)
-randoQuote = getRandomIndex(quotes)
-
-posterTitle.innerText = titles[randoTitl]
-posterImg.src = images[randoImg]
-posterQuote.innerText = quotes[randoQuote]
+    switchShowPoster()
+    }
 
 function savePoster() {
-    currentPoster = new Poster(
+    currentPoster = new Poster (
     posterImg.src,
     posterTitle.innerText,
-    posterQuote.innerText)
-
-      if (!savedPosters.includes(currentPoster)) {
+    posterQuote.innerText,
+    )
+      // for (var i = 0; i < savedPosters.length; i++) {
+      // if (savedPosters.id[i] === currentPoster.id) {
+      //   return
+      // }
       savedPosters.push(currentPoster)
-      };
-};
+    // }
+  };
 
 function getRandomIndex(array) {
     return Math.floor(Math.random() * array.length);
@@ -172,15 +179,15 @@ function makeOwnPoster(){
     posterImg.src = makeImage.value
     posterQuote.innerText = makeQuote.value
 
-    savedPosters.push(currentPoster)
+    // savedPosters.push(currentPoster)
 };
 
-function switchPage(){
+function switchPagePosterForm(){
     mainPage.classList.toggle('hidden')
     posterForm.classList.toggle('hidden')
 };
 
-function switchPageTwo(){
+function switchPageSaved(){
     mainPage.classList.toggle('hidden')
     savedPage.classList.toggle('hidden')
 
@@ -189,6 +196,11 @@ function switchPageTwo(){
 
 function switchPageMain(){
     savedPage.classList.toggle('hidden')
+    mainPage.classList.toggle('hidden')
+};
+
+function switchShowPoster(){
+    posterForm.classList.toggle('hidden')
     mainPage.classList.toggle('hidden')
 };
 
